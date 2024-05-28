@@ -54,6 +54,7 @@ public class PassAdministracionView extends JDialog {
         btnEntrar = new JButton("Entrar");
         btnEntrar.setBounds(335, 33, 89, 23);
         contentPane.add(btnEntrar);
+        getRootPane().setDefaultButton(btnEntrar);
 
         //Lo hacemos visible en el controlador(para hacerlo modal)
     }
