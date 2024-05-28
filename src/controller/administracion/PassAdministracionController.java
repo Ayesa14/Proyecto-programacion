@@ -24,7 +24,7 @@ public class PassAdministracionController {
                 if(Arrays.equals(view.getPasswordField().getPassword(), pass.toCharArray())) {
                     InicioController.destruirVentana();
                     destruirVentana();
-                    MenuAdministracionController();
+                    new MenuAdministracionController();
                 } else {
                     view.getLblPassIncorrecta().setVisible(true);
                     view.getPasswordField().setText("");
