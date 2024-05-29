@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import controller.InicioController;
 import controller.administracion.gestion.GestionCategoriasController;
 import controller.administracion.gestion.GestionMesasController;
+import controller.administracion.gestion.GestionProductosController;
 import controller.administracion.historial_pedidos.HistorialPedidosController;
 import view.administracion.MenuAdministracionView;
 
@@ -44,8 +45,7 @@ public class MenuAdministracionController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 destruirVentana();
-                System.out.println("Vamos a la gestion de PRODUCTOS");
-            }
+                new GestionProductosController();            }
         });
         view.getBtnGestionMesas().addActionListener(new ActionListener() {
             @Override
