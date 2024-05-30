@@ -181,9 +181,9 @@ public class GestionProductosController {
      */
     private boolean thereIsNameInTable(String name) {
         boolean thereIsNameInTable = false;
-        for(int i = 0; i < view.getTable().getModel().getRowCount(); i++) {
+        for (int i = 0; i < view.getTable().getModel().getRowCount(); i++) {
             String tableName = (String) view.getTable().getModel().getValueAt(i, 1);
-            if(tableName.equalsIgnoreCase(name)) {
+            if (tableName.equalsIgnoreCase(name)) {
                 thereIsNameInTable = true;
                 break;
             }
@@ -195,4 +195,5 @@ public class GestionProductosController {
         String selectedRowName = (String) view.getTable().getModel().getValueAt(view.getTable().getSelectedRow(), 1);
         return selectedRowName.equalsIgnoreCase(name);
 
+    }
 }
