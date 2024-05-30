@@ -95,7 +95,7 @@ public class AddProductosView extends JFrame {
         //btnGuardar
         btnGuardar = new JButton("GUARDAR");
         btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 35));
-        btnGuardar.setBounds(940, 526, 250, 149);
+        btnGuardar.setBounds(940, 526, 400, 149);
         contentPane.add(btnGuardar);
 
         //scrollPane
