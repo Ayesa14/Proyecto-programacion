@@ -33,6 +33,8 @@ public class AddProductosView extends JFrame {
     private JButton[] categoriasButtons;
     private JButton[] productosButtons;
     private JLabel lblTotal;
+    private JButton btnMas;
+    private JButton btnMenos;
 
     /**
      * Create the frame.
@@ -100,7 +102,7 @@ public class AddProductosView extends JFrame {
 
         //scrollPane
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(940, 17, 400, 437);
+        scrollPane.setBounds(940, 17, 275, 437);
         contentPane.add(scrollPane);
 
         //table
@@ -126,6 +128,18 @@ public class AddProductosView extends JFrame {
         lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 30));
         lblTotal.setBounds(940, 465, 400, 50);
         contentPane.add(lblTotal);
+
+        //btnMas
+        btnMas = new JButton("+");
+        btnMas.setFont(new Font("Tahoma", Font.PLAIN, 50));
+        btnMas.setBounds(1225, 526, 115, 69);
+        contentPane.add(btnMas);
+
+        //btnMenos
+        btnMenos = new JButton("-");
+        btnMenos.setFont(new Font("Tahoma", Font.PLAIN, 50));
+        btnMenos.setBounds(1225, 606, 115, 69);
+        contentPane.add(btnMenos);
 
         if(categoriasButtonNames.length == 0) {
             //lblNoHayCategorias
@@ -197,7 +211,7 @@ public class AddProductosView extends JFrame {
         return lblNoHayProductos;
     }
 
-    public JLabel getLblNoEliminar() {
+    public JLabel getLblNoSeleccion() {
         return lblNoSeleccion;
     }
 
@@ -243,6 +257,14 @@ public class AddProductosView extends JFrame {
 
     public JLabel getLblTotal() {
         return lblTotal;
+    }
+
+    public JButton getBtnMas() {
+        return btnMas;
+    }
+
+    public JButton getBtnMenos() {
+        return btnMenos;
     }
 
 }
