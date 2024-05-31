@@ -117,5 +117,136 @@ public class AddProductosModel {
         }
         return precio;
     }
+    /**
+     * Retorna el ID de un producto pasandole como parametro el nombre de este
+     * @param nombreProducto
+     * @return
+     */
+    public int getIdProductoFromNombre(String nombreProducto) {
+        int id = -1;
+        //Sacamos de BBDD
+        DatabaseConnectionService.openConnection();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            //Hacemos consulta
+            String sql = "select id from " + DatabaseConnectionService.getDatabase() + ".producto where nombre = '" + nombreProducto + "'";
+            statement = DatabaseConnectionService.getConnection().createStatement();
+            resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            id = resultSet.getInt("id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { if (resultSet != null) resultSet.close(); } catch (Exception e) {};
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (DatabaseConnectionService.getConnection() != null) DatabaseConnectionService.closeConnection(); } catch (Exception e) {};
+        }
+        return id;
+    }
 
+    public double getPrecioPedidoFromId(int id) {
+        double precio = 0;
+        //Sacamos de BBDD
+        DatabaseConnectionService.openConnection();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            //Hacemos consulta
+            String sql = "select precio from " + DatabaseConnectionService.getDatabase() + ".pedido where id = " + id;
+            statement = DatabaseConnectionService.getConnection().createStatement();
+            resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            precio = resultSet.getDouble("precio");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { if (resultSet != null) resultSet.close(); } catch (Exception e) {};
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (DatabaseConnectionService.getConnection() != null) DatabaseConnectionService.closeConnection(); } catch (Exception e) {};
+        }
+        return precio;
+    }
+    public int getLastIdFrom(String tableName) {
+        int id = 0;
+        //Sacamos de BBDD
+        DatabaseConnectionService.openConnection();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            //Hacemos consulta
+            String sql = "select MAX(id) as \"id\" from " + DatabaseConnectionService.getDatabase() + "." + tableName;
+            statement = DatabaseConnectionService.getConnection().createStatement();
+            resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            id = resultSet.getInt("id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { if (resultSet != null) resultSet.close(); } catch (Exception e) {};
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (DatabaseConnectionService.getConnection() != null) DatabaseConnectionService.closeConnection(); } catch (Exception e) {};
+        }
+        return id;
+    }
+
+    public void insertNewPedido(int id, double precio, String fecha, int idMesa) {
+        String sql = "insert into " + DatabaseConnectionService.getDatabase() + ".pedido values (" + id + ", " + precio + ", 'true', '" + fecha + "', " + idMesa + ")";
+        DatabaseConnectionService.openConnection();
+        Statement statement = null;
+        try {
+            statement = DatabaseConnectionService.getConnection().createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (DatabaseConnectionService.getConnection() != null) DatabaseConnectionService.closeConnection(); } catch (Exception e) {};
+        }
+    }
+
+    public void insertNewComanda(int id, int idPedido) {
+        String sql = "insert into " + DatabaseConnectionService.getDatabase() + ".comanda values (" + id + ", " + idPedido + ")";
+        DatabaseConnectionService.openConnection();
+        Statement statement = null;
+        try {
+            statement = DatabaseConnectionService.getConnection().createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (DatabaseConnectionService.getConnection() != null) DatabaseConnectionService.closeConnection(); } catch (Exception e) {};
+        }
+    }
+
+    public void inserNewRelacionComandaProducto(int idComanda, int idProducto, int cantidad) {
+        String sql = "insert into " + DatabaseConnectionService.getDatabase() + ".comanda_producto values (" + idComanda + ", " + idProducto + ", " + cantidad +")";
+        DatabaseConnectionService.openConnection();
+        Statement statement = null;
+        try {
+            statement = DatabaseConnectionService.getConnection().createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (DatabaseConnectionService.getConnection() != null) DatabaseConnectionService.closeConnection(); } catch (Exception e) {};
+        }
+    }
+
+    public void updatePrecioTotalPedido(int idPedido, double precio) {
+        String sql = "update " + DatabaseConnectionService.getDatabase() + ".pedido set precio = " + precio + " where id = " + idPedido;
+        DatabaseConnectionService.openConnection();
+        Statement statement = null;
+        try {
+            statement = DatabaseConnectionService.getConnection().createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (DatabaseConnectionService.getConnection() != null) DatabaseConnectionService.closeConnection(); } catch (Exception e) {};
+        }
+    }
 }

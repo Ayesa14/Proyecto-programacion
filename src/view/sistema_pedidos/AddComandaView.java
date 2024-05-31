@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 
-public class AddProductosView extends JFrame {
+public class AddComandaView extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -37,7 +37,7 @@ public class AddProductosView extends JFrame {
     /**
      * Create the frame.
      */
-    public AddProductosView(DefaultTableModel tableModel, String[] categoriasButtonNames) {
+    public AddComandaView(DefaultTableModel tableModel, String[] categoriasButtonNames) {
         //JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1366, 768);
@@ -67,7 +67,7 @@ public class AddProductosView extends JFrame {
         lblNoHayProductos.setVisible(false);
         contentPane.add(lblNoHayProductos);
 
-        //lblNoSeleccion
+        //lblNoEliminar
         lblNoSeleccion = new JLabel("No hay ningun producto selecionado en la tabla");
         lblNoSeleccion.setForeground(Color.RED);
         lblNoSeleccion.setBounds(109, 18, 449, 14);
@@ -112,13 +112,13 @@ public class AddProductosView extends JFrame {
         categoriaPanel = new JPanel();
         categoriaPanel.setBounds(10, 86, 920, 200);
         contentPane.add(categoriaPanel);
-        categoriaPanel.setLayout(new GridLayout(2, 4, 10, 10));
+        categoriaPanel.setLayout(new GridLayout(2, 4, 0, 0));
 
         //productoPanel
         productoPanel = new JPanel();
         productoPanel.setBounds(10, 340, 920, 378);
         contentPane.add(productoPanel);
-        productoPanel.setLayout(new GridLayout(2, 4, 10, 10));
+        productoPanel.setLayout(new GridLayout(2, 4, 0, 0));
 
         //lblTotal
         lblTotal = new JLabel("TOTAL: XX");
